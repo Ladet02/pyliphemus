@@ -1,7 +1,7 @@
 import asyncio
 from loguru import logger
 
-from pylyphemus.api import PyLiphemAPI
+from pyliphemus.api import PyLiphemAPI
 
 smm_service = PyLiphemAPI(token="")
 token = ""
