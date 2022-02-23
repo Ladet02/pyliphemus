@@ -354,3 +354,5 @@ $RECYCLE.BIN/
 
 # setuptools
 dist/*
+
+setup.py
