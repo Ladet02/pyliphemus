@@ -9,4 +9,4 @@ Start of full development - 23.02.22
 # Current State
 At the moment, there is support for all actions.
 
-**Version:** 0.0.1 
+**Version:** 0.0.2
