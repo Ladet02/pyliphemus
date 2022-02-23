@@ -1,0 +1,68 @@
+import logging
+
+import requests
+
+
+class PyLiphemAPI(object):
+    def __init__(self, token: str):
+        self.token = token
+
+    async def add_order(self, action, token, service=None, quantity=None, link=None):
+
+        response = requests.get(f'https://bigsmm.ru/api/v2/?action={action}&key={token}&service={service}&quantity='
+                                f'{quantity}&link={link}')
+        logging.info(response)
+
+        if response.status_code == 200:
+            return response.json()
+        else:
+            message = 'A request to the BIG SMM API was unsuccessful. The server returned HTTP {0} {1}.'
+            return message.format(response.status_code, response.reason)
+
+    async def service_list(self):
+
+        response = requests.get('https://bigsmm.ru/api/v2/?action=services')
+        return response.json()
+
+    async def check_balance(self, token):
+
+        response = requests.get(f"https://bigsmm.ru/api/v2/?action=balance&key={token}")
+        return response.json()
+
+    async def order_list(self, token):
+
+        response = requests.get(f"https://bigsmm.ru/api/v2/?action=orders&key={token}")
+        return response.json()
+
+    async def order_details(self, token, order_id):
+
+        response = requests.get(f"https://bigsmm.ru/api/v2/?action=order_details&key={token}6&order={order_id}")
+
+    async def order_status(self, token, order_id):
+
+        response = requests.get(f"https://bigsmm.ru/api/v2/?action=status&key={token}&order={order_id}")
+
+    async def order_status_mass(self, token, orders_id: list):
+
+        formatted = ""
+        for i in orders_id:
+            if i != orders_id[-1]:
+                formatted += i + ","
+            else:
+                formatted += i
+
+        response = requests.get(f"https://bigsmm.ru/api/v2/?action=status&key={token}&orders={formatted}")
+
+    async def order_cancel(self, token, order_id):
+
+        response = requests.get(f"https://bigsmm.ru/api/v2/?action=cancel&key={token}&order={order_id}")
+
+    async def referreal_list(self, token):
+
+        response = requests.get(f"https://bigsmm.ru/api/v2/?action=referrals&key={token}")
+        return response.json()
+
+    async def referreals_total(self, token):
+
+        response = requests.get(f"https://bigsmm.ru/api/v2/?action=referrals_total&key={token}")
+        return response.json()
