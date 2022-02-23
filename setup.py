@@ -5,7 +5,7 @@ except ImportError:
 
 setup(
     name='pyliphemus',
-    version='0.0.1',
+    version='0.0.2',
     author='baltazarx',
     author_email='qwasar9@protonmail.com',
     url="https://github.com/baltazarx/pyliphemus'",
